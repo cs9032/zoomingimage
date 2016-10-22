@@ -1,28 +1,34 @@
 $(function () {
 
-    var $zoom = $('.zoom li');
-    var width = $zoom.width();
-    var zoom = 1.4;
-    var duration = 400;
+    var $zoom = $('.zoom li'),
+         width = $zoom.width(),
+         zoom = 1.4,
+         duration = 400;
 
     $zoom.on({
        mouseenter: function () {
 
-           var height = $(this).height();
+           var $self = $(this),
+                height = $self.height();
 
-           $(this).find('.img').stop().animate({
-               width: width * 1.4,
-               marginLeft: -(width * 1.4 - width) / 2,
-               marginTop: -(height * 1.4 - height) / 2
-
-           }, 400);
+           $self
+               .find('.img')
+               .stop()
+               .animate({
+                   width: width * zoom,
+                   marginLeft: -(width * zoom - width) / 2,
+                   marginTop: -(height * zoom - height) / 2
+               }, duration);
        },
         mouseleave: function () {
-            $(this).find('.img').stop().animate({
-                width: width,
-                marginLeft: 0,
-                marginTop: 0
-            }, 400);
+            $(this)
+                .find('.img')
+                .stop()
+                .animate({
+                    width: width,
+                    marginLeft: 0,
+                    marginTop: 0
+                }, duration);
         }
     });
 
